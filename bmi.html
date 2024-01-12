@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="">
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            /*background-color: rgb(78, 98, 123);*/
+            background-image: url("hatter.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            /*backdrop-filter: blur(10px);*/
+            font-family: sans-serif, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        }
+
+        .container {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            width: 50%;
+            height: 800px;
+            border-radius: 28px;
+            box-shadow: 0px 10px 35px rgb(55, 30, 75);
+            font-family: sans-serif, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        }
+
+        h1 {
+            padding: 25px;
+            color: rgb(65, 40, 85);
+            font-size: 1rem;
+            font-size: 40px;
+            background-color: rgb(65, 40, 85, 0.3);
+            border-radius: 28px;
+            height: 20px;
+        }
+
+        .bemenet {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        input {
+            height: 100px;
+            width: 180px;
+            /*border: 3px solid rgb(65, 40, 85);*/
+            border: none;
+            font-size: 30px;
+            margin: 5px;
+            padding: 5px;
+            border-radius: 28px;
+            background-color: rgb(55, 35, 70, 0.6);
+            color: rgb(65, 40, 85);
+            font-family: sans-serif, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        }
+
+        ::placeholder {
+            color: rgb(65, 40, 85);
+        }
+
+        input:hover {
+            background-color: rgb(65, 40, 85, 0.3);
+        }
+/*
+        input:o{
+            border: rgb(55, 30, 75);
+        }
+*/
+        button {
+            /*border: 3px solid rgb(65, 40, 85);*/
+            border: none;
+            cursor: pointer;
+            width: 180px;
+            height: 80px;
+            margin-top: 15px;
+            margin-left: 5px;
+            margin-right: 5px;
+            padding: 8px;
+            border-radius: 28px;
+            background-color: rgb(55, 35, 70, 0.6);
+            color: rgb(65, 40, 85);
+            font-size: 30px;
+            font-family: sans-serif, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        }
+
+        button:hover {
+            background-color: rgb(65, 40, 85, 0.3);
+        }
+
+        #result {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+            font-size: 38px;
+            /*border: solid 3px rgb(65, 40, 85);*/
+            border-radius: 50px;
+            max-width: 60%;
+            /*width: auto;*/
+            height: auto;
+            background-color: rgba(55, 35, 70, 0.6);
+            color: rgb(65, 40, 85);
+            font-family: sans-serif, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        }
+
+        @media screen and (max-width: 320px){
+            h1{
+                font-size: 10px;
+            }
+        }
+
+        @media screen and (max-width: 320px){
+            .container{
+                height: 500px;
+                font-size: 15px;
+            }
+        }
+
+        @media screen and (max-width: 320px){
+            button{
+                width: 50px;
+                font-size: 15px;
+            }
+        }
+
+        @media screen and (max-width: 320px){
+            input{
+                width: 50px;
+                font-size: 15px;
+            }
+        }
+
+        @media screen and (max-width: 320px){
+            #result{
+                border-radius: 25%;
+                width: auto;
+                height: auto;
+                font-size: 15px;
+            }
+        }
+
+        @keyframes pulse1 {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .7;
+            }
+        }
+
+        @keyframes pulse2 {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .8;
+            }
+        }
+
+        @keyframes bounce1 {
+
+            0%,
+            100% {
+                transform: translateY(3%);
+                animation-timing-function: cubic-bezier(0.8, 1, 1, 1);
+            }
+
+            50% {
+                transform: translateY(0);
+                animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            }
+        }
+
+        @keyframes bounce2 {
+
+            0%,
+            100% {
+                transform: translateX(3%);
+                animation-timing-function: cubic-bezier(0.8, 1, 1, 1);
+            }
+
+            50% {
+                transform: translateX(0);
+                animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            }
+        }
+
+        @keyframes bounce3 {
+
+            0%,
+            100% {
+                transform: translateX(-3%);
+                animation-timing-function: cubic-bezier(0.8, 1, 1, 1);
+            }
+
+            50% {
+                transform: translateX(0);
+                animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            }
+        }
+
+        #bmi {
+            animation: bounce2 2s infinite;
+        }
+
+        #reset {
+            animation: bounce3 2s infinite;
+        }
+
+        h1 {
+            animation: pulse1 2s cubic-bezier(0.4, 1, 0.6, 0) infinite;
+        }
+
+        input {
+            animation: bounce1 2s infinite;
+        }
+
+        #result {
+            animation: pulse2 2s cubic-bezier(0.4, 1, 0.6, 0) infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>BMI Calculator</h1>
+        <div class="bemenet">
+            <input type="number" id="weight" name="weight" placeholder="Weight(kg)"><br>
+            <input type="number" id="height" name="height" placeholder="Height(cm)"><br>
+        </div>
+        <button id="bmi" onclick="calc()">BMI Calc</button>
+        <button id="reset" onclick="reset()">Reset</button>
+        <div id="result"></div>
+    </div>
+    <script>
+        const intervals = [
+            { min: 1, max: 18.5, category: 'You are underweight.', emoji: '🦴' },
+            { min: 18.5, max: 24.9, category: 'You are of normal weight.', emoji: '😊' },
+            { min: 25, max: 29.9, category: 'You are overweight.', emoji: '🙂' },
+            { min: 30, max: 34.9, category: 'You are obese.', emoji: '😐' },
+            { min: 35, max: 50, category: 'He is severely obese.', emoji: '🍗' },
+        ]
+
+        function calc() {
+            let w = document.getElementById('weight').value
+            let h = document.getElementById('height').value / 100
+            //console.log(w,h);
+            let bmi = w / (h * h)
+            let kerekbmi = Math.round(bmi*100)/100
+            //console.log(bmi);
+            let interval = intervals.find(obj => bmi >= obj.min && bmi < obj.max)
+            if (interval == undefined) {
+                document.getElementById('result').innerHTML = `Please enter correct values.`
+                return
+
+            }
+            document.getElementById('result').innerHTML =  "Your BMI number:" + kerekbmi + "<br>"
+            document.getElementById('result').innerHTML += interval.category + " " + interval.emoji
+            //console.log(interval,interval.category);
+        }
+
+        function reset() {
+            document.getElementById('weight').value = ""
+            document.getElementById('height').value = ""
+            document.getElementById('result').innerHTML = ""
+        }
+    </script>
+</body>
+</html>
